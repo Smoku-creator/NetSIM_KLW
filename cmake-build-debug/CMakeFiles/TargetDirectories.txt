@@ -1,3 +1,0 @@
-C:/Users/Wiktor/Desktop/NetSim/NetSIM_KLW/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Wiktor/Desktop/NetSim/NetSIM_KLW/cmake-build-debug/CMakeFiles/net.dir
-C:/Users/Wiktor/Desktop/NetSim/NetSIM_KLW/cmake-build-debug/CMakeFiles/rebuild_cache.dir
