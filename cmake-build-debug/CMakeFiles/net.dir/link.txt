@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\net.dir/objects.a
+C:\msys64\mingw64\bin\ar.exe cr CMakeFiles\net.dir/objects.a @CMakeFiles\net.dir\objects1.rsp
+C:\msys64\mingw64\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\net.dir/objects.a -Wl,--no-whole-archive  -o net.exe -Wl,--out-implib,libnet.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\net.dir\linklibs.rsp
