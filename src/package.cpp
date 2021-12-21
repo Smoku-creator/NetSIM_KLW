@@ -27,11 +27,19 @@ Package::Package() {
 }
 
 
+Package::Package(Package&& to_move) noexcept {
+    semi_prod_ = to_move.semi_prod_;
+    to_move.semi_prod_ = err_;
+}
+
+
 // Initialization of the destructor
 Package::~Package() {
 //    When the life of a Package ends, withdraw from assigned_IDs and insert to freed_IDs
-    assigned_IDs.erase(semi_prod_);
-    freed_IDs.insert(semi_prod_);
+    if (semi_prod_ != err_) {
+        assigned_IDs.erase(semi_prod_);
+        freed_IDs.insert(semi_prod_);
+    }
 }
 
 
@@ -46,7 +54,7 @@ Package::Package(ElementID m) {
         assigned_IDs.insert(semi_prod_);
     }
 //    If appeared only in assigned_IDs
-    else if (i && !j) {
+    else if (!i && j) {
         semi_prod_ = m;
         freed_IDs.erase(semi_prod_);
         assigned_IDs.insert(semi_prod_);
@@ -54,4 +62,14 @@ Package::Package(ElementID m) {
     else {
         throw std::invalid_argument("ID already in use.");
     }
+}
+
+Package &Package::operator=(Package&& alfa) noexcept {
+    if (semi_prod_ != err_) {
+        assigned_IDs.erase(semi_prod_);
+        freed_IDs.insert(semi_prod_);
+    }
+    semi_prod_ = alfa.semi_prod_;
+    alfa.semi_prod_ = err_;
+    return *this;
 }
