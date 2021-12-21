@@ -8,27 +8,27 @@
 #include <iostream>
 
 int main() {
-//    Package p1(1);
-//    Package p2(3);
-//
-//    std::cout << "Package ID p1:" << p1.get_id() << std::endl;
-//    std::cout << "Package ID p2:" << p2.get_id() << std::endl;
-//    {
-//        Package p3;
-//        std::cout << "Package ID p3:" << p3.get_id() << std::endl;
-//    }
-//    Package p4;
-//
-//    Package p5(std::move(p1));
-//
-//    std::cout << "Package ID p4:" << p4.get_id() << std::endl;
-//    std::cout << "Package ID p5:" << p5.get_id() << std::endl;
-//
-//    Package p6 = std::move(p2);
-//    Package p7 = std::move(p5);
-//
-//    std::cout << "Package ID p6:" << p6.get_id() << std::endl;
-//    std::cout << "Package ID p7:" << p7.get_id() << std::endl;
+    Package p1(1);
+    Package p2(3);
+
+    std::cout << "Package ID p1:" << p1.get_id() << std::endl;
+    std::cout << "Package ID p2:" << p2.get_id() << std::endl;
+    {
+        Package p3;
+        std::cout << "Package ID p3:" << p3.get_id() << std::endl;
+    }
+    Package p4;
+
+    Package p5(std::move(p1));
+
+    std::cout << "Package ID p4:" << p4.get_id() << std::endl;
+    std::cout << "Package ID p5:" << p5.get_id() << std::endl;
+
+    Package p6 = std::move(p2);
+    Package p7 = std::move(p5);
+
+    std::cout << "Package ID p6:" << p6.get_id() << std::endl;
+    std::cout << "Package ID p7:" << p7.get_id() << std::endl;
     PackageQueue q(PackageQueueType::FIFO);
     std::cout << "Czy jestem pusta? ";
     if (q.empty()) {
