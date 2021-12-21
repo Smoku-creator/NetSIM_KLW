@@ -54,7 +54,7 @@ public:
 
 //    Implementation of virtual methods from IPackageStockpile
     size_t size() override { return queue_.size(); }
-    void push(Package&& to_push) override { queue_.emplace_back(to_push.get_id()); }
+    void push(Package&& to_push) override { queue_.emplace_back(std::move(to_push)); }
     [[nodiscard]] bool empty() override { return queue_.empty(); }
 
 //    Implementation of IPackageStockpile 'Read-only' iterators
