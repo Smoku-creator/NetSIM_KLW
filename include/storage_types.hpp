@@ -20,9 +20,9 @@ public:
 //    Using 'move constructor' from class Package insert a Package into PackageQueue
     virtual void push(Package&&) = 0;
 //    Returns boolean info if PackageQueue is empty or not
-    virtual bool empty() = 0;
+    [[nodiscard]] virtual bool empty() const = 0;
 //    Returns size of the PackageQueue (aka 'unsigned long long')
-    virtual size_t size() = 0;
+    [[nodiscard]] virtual size_t size() const = 0;
 
 //    Declared iterators for 'Read-only' operations
     virtual const_iterator cbegin() = 0;
@@ -53,9 +53,9 @@ public:
     [[nodiscard]] PackageQueueType get_queue_type() const override { return queue_type_; }
 
 //    Implementation of virtual methods from IPackageStockpile
-    size_t size() override { return queue_.size(); }
+    [[nodiscard]] size_t size() const override { return queue_.size(); }
     void push(Package&& to_push) override { queue_.emplace_back(std::move(to_push)); }
-    [[nodiscard]] bool empty() override { return queue_.empty(); }
+    [[nodiscard]] bool empty() const override { return queue_.empty(); }
 
 //    Implementation of IPackageStockpile 'Read-only' iterators
     IPackageStockpile::const_iterator cbegin() override { return queue_.cbegin(); }
