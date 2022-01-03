@@ -1,0 +1,8 @@
+//
+// Created by Wiktor on 03.01.2022.
+//
+
+#ifndef IMPLEMENTATION_NODES_HPP
+#define IMPLEMENTATION_NODES_HPP
+
+#endif //IMPLEMENTATION_NODES_HPP
