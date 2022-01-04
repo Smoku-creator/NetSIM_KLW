@@ -1,0 +1,8 @@
+//
+// Created by Wiktor on 03.01.2022.
+//
+
+#ifndef IMPLEMENTATION_FACTORY_HPP
+#define IMPLEMENTATION_FACTORY_HPP
+
+#endif //IMPLEMENTATION_FACTORY_HPP
