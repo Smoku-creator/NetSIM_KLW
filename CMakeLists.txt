@@ -12,6 +12,8 @@ include_directories(
 set(SOURCE_FILES
         src/storage_types.cpp
         src/package.cpp
+        src/helpers.cpp
+        src/nodes.cpp
         )
 
 add_executable(net ${SOURCE_FILES} main.cpp)
