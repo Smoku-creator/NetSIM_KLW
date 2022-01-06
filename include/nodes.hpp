@@ -24,19 +24,21 @@ public:
 
 class Storehouse : public IPackageReceiver {
 public:
-    explicit Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> = nullptr) { id_ = id; }
-    [[nodiscard]] ElementID get_id() const override { return id_; }
-    [[nodiscard]] ReceiverType get_node_type() const override { return type_; }
+    explicit Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> package_depot = std::make_unique<PackageQueue>(
+            PackageQueueType::LIFO)) : _id(id), package_stockpile_(std::move(package_depot)) {}
+    [[nodiscard]] ElementID get_id() const override { return _id; }
+    [[nodiscard]] ReceiverType get_node_type() const override { return _type; }
+    void receive_package(Package&& p) override { package_stockpile_->push(std::move(p)); }
 
-    IPackageStockpile::const_iterator cbegin() override { return storage_.cbegin(); }
-    IPackageStockpile::const_iterator cend() override { return storage_.cend(); }
-    IPackageStockpile::iterator begin() override { return storage_.begin(); }
-    IPackageStockpile::iterator end() override { return storage_.end(); }
+    IPackageStockpile::const_iterator cbegin() override { return package_stockpile_->cbegin(); }
+    IPackageStockpile::const_iterator cend() override { return package_stockpile_->cend(); }
+    IPackageStockpile::iterator begin() override { return package_stockpile_->begin(); }
+    IPackageStockpile::iterator end() override { return package_stockpile_->end(); }
 
 private:
-    ElementID id_;
-    std::list<Package> storage_;
-    const static ReceiverType type_ = ReceiverType::STOREHOUSE;
+    ElementID _id;
+    std::unique_ptr<IPackageStockpile> package_stockpile_;
+    const static ReceiverType _type = ReceiverType::STOREHOUSE;
 };
 
 #endif //IMPLEMENTATION_NODES_HPP
