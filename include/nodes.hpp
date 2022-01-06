@@ -2,17 +2,21 @@
 #define IMPLEMENTATION_NODES_HPP
 
 #include "storage_types.hpp"
+#include "helpers.hpp"
 
 #include <memory>
+#include <map>
 
-
-enum class ReceiverType {
-    WORKER, STOREHOUSE
+enum class ReceiverType
+{
+    WORKER,
+    STOREHOUSE
 };
 
-class IPackageReceiver {
+class IPackageReceiver
+{
 public:
-    virtual void receive_package(Package&& p) = 0;
+    virtual void receive_package(Package &&p) = 0;
     [[nodiscard]] virtual ElementID get_id() const = 0;
     [[nodiscard]] virtual ReceiverType get_node_type() const = 0;
 
@@ -22,7 +26,8 @@ public:
     virtual IPackageStockpile::iterator end() = 0;
 };
 
-class Storehouse : public IPackageReceiver {
+class Storehouse : public IPackageReceiver
+{
 public:
     explicit Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> package_depot = std::make_unique<PackageQueue>(
             PackageQueueType::LIFO)) : _id(id), package_stockpile_(std::move(package_depot)) {}
@@ -39,6 +44,44 @@ private:
     ElementID _id;
     std::unique_ptr<IPackageStockpile> package_stockpile_;
     const static ReceiverType _type = ReceiverType::STOREHOUSE;
+};
+
+class ReceiverPreferences
+{
+public:
+    ReceiverPreferences(ProbabilityGenerator pg);
+    using preferences_t = std::map<IPackageReceiver *, double>;
+    using const_iterator = preferences_t::const_iterator;
+    using iterator = preferences_t::iterator;
+    const_iterator cbegin() { return map_.cbegin(); }
+    const_iterator cend() { return map_.cend(); }
+    iterator begin() { return map_.begin(); }
+    iterator end() { return map_.end(); }
+    void add_receiver(IPackageReceiver *r);
+    void remove_receiver(IPackageReceiver *r);
+    IPackageReceiver *choose_receiver();
+    preferences_t &const get_preferences();
+
+private:
+    preferences_t map_;
+};
+
+class PackageSender : public ReceiverPreferences
+{
+public:
+private:
+};
+
+class Worker : public IPackageReceiver, public PackageSender
+{
+public:
+private:
+};
+
+class Ramp : public PackageSender
+{
+public:
+private:
 };
 
 #endif //IMPLEMENTATION_NODES_HPP
