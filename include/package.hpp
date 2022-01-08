@@ -6,34 +6,40 @@
 #include <set>
 #include <optional>
 
-
-class Package {
+class Package
+{
 public:
-
-//    Main Constructors' declaration
+    //    Main Constructors' declaration
     Package();
     explicit Package(ElementID m);
 
+<<<<<<< HEAD
 //    Move Constructor by default
     Package(Package&& to_move) noexcept ;
+=======
+    Package(Package &to_copy) = delete;
+    Package operator=(Package &beta) = delete;
 
-//    Operator='s definition by default
-    Package& operator=(Package&& alfa) noexcept ;
+    //    Move Constructor by default
+    Package(Package &&to_move) noexcept;
+>>>>>>> 77779e5480b54a5088eda0472e113884bd06fdf9
 
-//    Method returning package's ID
+    //    Operator='s definition by default
+    Package &operator=(Package &&alfa) noexcept;
+
+    //    Method returning package's ID
     [[nodiscard]] ElementID get_id() const { return semi_prod_; }
 
-//    Destructor's declaration
+    //    Destructor's declaration
     ~Package();
 
 private:
-
-//    Static Members
+    //    Static Members
     static std::set<ElementID> assigned_IDs;
     static std::set<ElementID> freed_IDs;
     const static ElementID err_ = -1;
 
-//    ID of the Package
+    //    ID of the Package
     ElementID semi_prod_;
 };
 
