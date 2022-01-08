@@ -1,26 +1,3 @@
-<<<<<<< HEAD
-//#include "nodes.hpp"
-//
-//ReceiverPreferences::ReceiverPreferences(ProbabilityGenerator pg){
-//
-//}
-//
-//void ReceiverPreferences::add_receiver(IPackageReceiver *r){
-//
-//}
-//
-//void ReceiverPreferences::remove_receiver(IPackageReceiver *r){
-//
-//}
-//
-//IPackageReceiver* ReceiverPreferences::choose_receiver(){
-//
-//}
-//
-//preferences_t& const ReceiverPreferences::get_preferences(){
-//
-//}
-=======
 #include "nodes.hpp"
 
 void ReceiverPreferences::add_receiver(IPackageReceiver *r)
@@ -31,45 +8,45 @@ void ReceiverPreferences::add_receiver(IPackageReceiver *r)
     }
     else
     {
-        int n = map_.size();
-        for (auto it = map_.begin(); it != map_.end(); ++it)
+        auto n = static_cast<double>(map_.size());
+        for (auto & it : map_)
         {
-            it->second = 1 / (n + 1);
+            it.second = 1.0 / (n + 1.0);
         }
-        map_.insert({r, 1 / (n + 1)});
+        map_.insert({r, 1.0 / (n + 1.0)});
     }
 }
 
 void ReceiverPreferences::remove_receiver(IPackageReceiver *r)
 {
-    int n = map_.size();
-    auto it = map_.find(r);
-    map_.erase(it);
+    auto n = static_cast<double>(map_.size());
+    auto it_find = map_.find(r);
+    map_.erase(it_find);
     if (n > 1)
     {
-        for (auto it = map_.begin(); it != map_.end(); ++it)
+        for (auto & it : map_)
         {
-            it->second = 1 / (n - 1);
+            it.second = 1 / (n - 1);
         }
     }
 }
 
 IPackageReceiver *ReceiverPreferences::choose_receiver()
 {
-    double sum = 0;
-    for (auto it = map_.begin(); it != map_.end(); ++it)
-    {
-        sum += it->second;
-        if (sum >= pg_)
-        {
-            return it->first;
-        }
-    }
+//    auto sum = 0;
+//    for (auto it = map_.begin(); it != map_.end(); ++it)
+//    {
+//        sum += it->second;
+//        if (sum >= pg_)
+//        {
+//            return it->first;
+//        }
+//    }
+return reinterpret_cast<IPackageReceiver*>(this);
 }
 
-void PackageSender::send_package()
-{
-    if (buffer_)
-        return *buffer_;
-}
->>>>>>> 77779e5480b54a5088eda0472e113884bd06fdf9
+//void PackageSender::send_package()
+//{
+//    if (buffer_)
+//        return *buffer_;
+//}
