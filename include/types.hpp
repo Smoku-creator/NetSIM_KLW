@@ -2,6 +2,7 @@
 #define IMPLEMENTATION_TYPES_HPP
 
 #include <ostream>
+#include <functional>
 
 using ElementID = int;
 using Time = int;
