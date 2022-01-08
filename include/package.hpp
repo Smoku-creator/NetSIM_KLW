@@ -4,6 +4,7 @@
 #include "types.hpp"
 
 #include <set>
+#include <optional>
 
 
 class Package {
@@ -12,9 +13,6 @@ public:
 //    Main Constructors' declaration
     Package();
     explicit Package(ElementID m);
-
-    Package(Package& to_copy) = delete;
-    Package operator=(Package& beta) = delete;
 
 //    Move Constructor by default
     Package(Package&& to_move) noexcept ;
@@ -38,6 +36,5 @@ private:
 //    ID of the Package
     ElementID semi_prod_;
 };
-
 
 #endif //IMPLEMENTATION_PACKAGE_HPP
