@@ -9,11 +9,7 @@
 #include <optional>
 #include <utility>
 
-enum class ReceiverType
-{
-    WORKER,
-    STOREHOUSE
-};
+enum class ReceiverType { WORKER, STOREHOUSE };
 
 class IPackageReceiver
 {
@@ -31,27 +27,30 @@ public:
 class Storehouse : public IPackageReceiver
 {
 public:
-    explicit Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> package_depot = std::make_unique<PackageQueue>(
-            PackageQueueType::LIFO)) : _id(id), package_stockpile_(std::move(package_depot)) {}
+    explicit Storehouse(ElementID id, std::unique_ptr<IPackageStockpile> d =
+            std::make_unique<PackageQueue>(PackageQueueType::LIFO))
+            : _id(id), d_(std::move(d)) {}
+
     [[nodiscard]] ElementID get_id() const override { return _id; }
 //    [[nodiscard]] ReceiverType get_receiver_type() const override { return _type; }
-    void receive_package(Package&& p) override { package_stockpile_->push(std::move(p)); }
+    void receive_package(Package&& p) override { d_->push(std::move(p)); }
 
-//    IPackageStockpile::const_iterator cbegin() override { return package_stockpile_->cbegin(); }
-//    IPackageStockpile::const_iterator cend() override { return package_stockpile_->cend(); }
-//    IPackageStockpile::iterator begin() override { return package_stockpile_->begin(); }
-//    IPackageStockpile::iterator end() override { return package_stockpile_->end(); }
+//    IPackageStockpile::const_iterator cbegin() override { return d_->cbegin(); }
+//    IPackageStockpile::const_iterator cend() override { return d_->cend(); }
+//    IPackageStockpile::iterator begin() override { return d_->begin(); }
+//    IPackageStockpile::iterator end() override { return d_->end(); }
 
 private:
     ElementID _id;
-    std::unique_ptr<IPackageStockpile> package_stockpile_;
+    std::unique_ptr<IPackageStockpile> d_;
     const static ReceiverType _type = ReceiverType::STOREHOUSE;
 };
 
 class ReceiverPreferences
 {
 public:
-    explicit ReceiverPreferences(ProbabilityGenerator pg = probability_generator) : pg_(std::move(pg)) {}
+    explicit ReceiverPreferences(ProbabilityGenerator pg = probability_generator)
+    : pg_(std::move(pg)) {}
 
     using preferences_t = std::map<IPackageReceiver *, double>;
     using const_iterator = preferences_t::const_iterator;
@@ -123,14 +122,7 @@ class Ramp : public PackageSender
 {
 public:
     Ramp(ElementID id, TimeOffset di) : id_(id), di_(di) {}
-
-    void deliver_goods(Time t)
-    {
-        if ((t-1) % di_ == 0)
-        {
-            push_package(Package());
-        }
-    }
+    void deliver_goods(Time t) { if ((t - 1) % di_ == 0) push_package(Package()); }
     [[nodiscard]] TimeOffset get_delivery_interval() const {return di_; }
     [[nodiscard]] ElementID get_id() const { return id_; }
 
