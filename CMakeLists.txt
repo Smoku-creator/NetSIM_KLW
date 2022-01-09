@@ -14,6 +14,7 @@ set(SOURCE_FILES
         src/package.cpp
         src/helpers.cpp
         src/nodes.cpp
+        src/factory.cpp
         )
 
 add_executable(net ${SOURCE_FILES} main.cpp)
@@ -40,4 +41,4 @@ add_subdirectory(googletest-master)
 
 target_link_libraries(net_test gmock)
 
-#target_compile_definitions(net_test PUBLIC EXERCISE_ID=1)
+#target_compile_definitions(net_test PUBLIC EXERCISE_ID=2)

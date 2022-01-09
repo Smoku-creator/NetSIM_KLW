@@ -1,4 +1,16 @@
+//
+// Created by Wiktor on 04.01.2022.
+//
 #include "factory.hpp"
+
+//bool Factory::is_consistent() const {
+//    using mapa = std::map<const PackageSender*, NodeColor>;
+//    mapa color = mapa();
+//
+//    for (auto& node : ramp_) {
+//        color.emplace(&node, NodeColor::UNVISITED);
+//    }
+//}
 
 void Factory::do_deliveries(Time t)
 {
