@@ -4,48 +4,13 @@
 #include "factory.hpp"
 
 //bool Factory::is_consistent() const {
-//    std::map<const PackageSender*, NodeColor> color;
-//    NodeCollection<Ramp>::const_iterator node_;
+//    using mapa = std::map<const PackageSender*, NodeColor>;
+//    mapa color = mapa();
 //
-//    for (node_ = ramp_cbegin(); node_ != ramp_.end(); ++node_) {
-//        color.insert({*node_, NodeColor::UNVISITED});
+//    for (auto& node : ramp_) {
+//        color.emplace(&node, NodeColor::UNVISITED);
 //    }
 //}
-NodeCollection<Ramp>::iterator Factory::find_ramp_by_id(ElementID id) {
-    NodeCollection<Ramp>::iterator found;
-    found = std::find_if(ramp_.begin(), ramp_.end(), [&](const Ramp& val){ return val.get_id() == id; } );
-    return found;
-}
-
-[[nodiscard]] NodeCollection<Ramp>::const_iterator Factory::find_ramp_by_id(ElementID id) const {
-    NodeCollection<Ramp>::const_iterator found;
-    found = std::find_if(ramp_.begin(), ramp_.end(), [&](const Ramp& val){ return val.get_id() == id; } );
-    return found;
-}
-
-NodeCollection<Worker>::iterator Factory::find_worker_by_id(ElementID id) {
-    NodeCollection<Worker>::iterator found;
-    found = std::find_if(worker_.begin(), worker_.end(), [&](const Worker& val){ return val.get_id() == id; } );
-    return found;
-}
-
-[[nodiscard]] NodeCollection<Worker>::const_iterator Factory::find_worker_by_id(ElementID id) const {
-    NodeCollection<Worker>::const_iterator found;
-    found = std::find_if(worker_.begin(), worker_.end(), [&](const Worker& val){ return val.get_id() == id; } );
-    return found;
-}
-
-NodeCollection<Storehouse>::iterator Factory::find_storehouse_by_id(ElementID id) {
-    NodeCollection<Storehouse>::iterator found;
-    found = std::find_if(storehouse_.begin(), storehouse_.end(), [&](const Storehouse& val){ return val.get_id() == id; } );
-    return found;
-}
-
-[[nodiscard]] NodeCollection<Storehouse>::const_iterator Factory::find_storehouse_by_id(ElementID id) const {
-    NodeCollection<Storehouse>::const_iterator found;
-    found = std::find_if(storehouse_.begin(), storehouse_.end(), [&](const Storehouse& val){ return val.get_id() == id; } );
-    return found;
-}
 
 void Factory::do_deliveries(Time t)
 {
@@ -53,5 +18,31 @@ void Factory::do_deliveries(Time t)
     for (node_ = ramp_.begin(); node_ != ramp_.end(); ++node_)
     {
         node_->deliver_goods(t);
+    }
+}
+
+void Factory::do_package_passing()
+{
+    NodeCollection<Ramp>::iterator node_;
+    for (node_ = ramp_.begin(); node_ != ramp_.end(); ++node_)
+    {
+        node_->send_package();
+    }
+    NodeCollection<Worker>::iterator node1_;
+    for (node1_ = worker_.begin(); node1_ != worker_.end(); ++node1_)
+    {
+        if (!node1_->get_package_processing_start_time())
+        {
+            node1_->send_package();
+        }
+    }
+}
+
+void Factory::do_work(Time t)
+{
+    NodeCollection<Worker>::iterator node1_;
+    for (node1_ = worker_.begin(); node1_ != worker_.end(); ++node1_)
+    {
+        node1_->do_work(t);
     }
 }

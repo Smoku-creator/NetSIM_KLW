@@ -66,7 +66,7 @@ public:
 
     IPackageReceiver *choose_receiver();
 
-    preferences_t &get_preferences() { return map_; }
+    [[nodiscard]] const preferences_t &get_preferences() const { return map_; }
     size_t size() { return map_.size(); }
 
 private:
