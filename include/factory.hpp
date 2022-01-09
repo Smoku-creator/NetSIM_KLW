@@ -8,6 +8,7 @@
 #include "nodes.hpp"
 #include <vector>
 
+
 enum class NodeColor { UNVISITED, VISITED, VERIFIED };
 
 template <class Node>

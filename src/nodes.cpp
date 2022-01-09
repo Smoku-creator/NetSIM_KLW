@@ -71,7 +71,6 @@ void Worker::do_work(Time t) {
     }
     else {
         if (t_ + pd_ == t) {
-            send_package();
             t_ = 0;
         }
     }
