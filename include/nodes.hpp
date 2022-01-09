@@ -48,7 +48,7 @@ private:
 class ReceiverPreferences
 {
 public:
-    ReceiverPreferences(ProbabilityGenerator pg = probability_generator) { pg_ = pg; };
+    ReceiverPreferences(ProbabilityGenerator pg = probability_generator) : pg_(std::move(pg)) {}
 
     using preferences_t = std::map<IPackageReceiver *, double>;
     using const_iterator = preferences_t::const_iterator;
@@ -63,7 +63,7 @@ public:
     void remove_receiver(IPackageReceiver *r);
 
     IPackageReceiver *choose_receiver();
-    preferences_t &get_preferences() const { return map_; };
+    preferences_t &get_preferences() { return map_; }
 
 private:
     preferences_t map_;
@@ -76,43 +76,51 @@ public:
     PackageSender(PackageSender &&) = default;
 
     void send_package();
-    std::optional<Package> &get_sending_buffer() const;
+    std::optional<Package> &get_sending_buffer();
 
     ReceiverPreferences receiver_preferences_;
 
 protected:
-    void push_package(Package &&) { buffer_.emplace(this); };
+    void push_package(Package &&p) { buffer_.emplace(std::move(p)); }
 
 private:
     std::optional<Package> buffer_;
 };
 
-class Worker : public IPackageReceiver, public PackageSender
+class Worker : public IPackageReceiver, public PackageSender, public IPackageQueue
 {
 public:
-    Worker(ElementID id, TimeOffset pd, std::unique_ptr<IPackageQueue> q);
+    Worker(ElementID id, TimeOffset pd, std::unique_ptr<IPackageQueue> q) : id_(id), pd_(pd), q_(q) {}
     void do_work(Time t);
-    TimeOffset get_processing_duration() const;
-    Time get_package_processing_start_time() const;
+    TimeOffset get_processing_duration() const { return pd_; };
+    Time get_package_processing_start_time() const { return t_; };
 
 private:
     ElementID id_;
     TimeOffset pd_;
     std::unique_ptr<IPackageQueue> q_;
+    Time t_ = 0;
+    PackageQueue queue_;
 };
 
 class Ramp : public PackageSender
 {
 public:
-    Ramp(ElementID id, TimeOffset di);
+    Ramp(ElementID id, TimeOffset di) : id_(id), di_(di) {}
 
-    void deliver_goods(time t);
-    TimeOffset get_delivery_interval() const;
-    ElementID get_id() const;
+    void deliver_goods(Time t)
+    {
+        if ((t - 1) % di_)
+        {
+            push_package(Package());
+        }
+    }
+    TimeOffset get_delivery_interval() const { return di_; };
+    ElementID get_id() const { return id_; };
 
 private:
     ElementID id_;
-    TimeOffset pd_;
+    TimeOffset di_;
 };
 
 #endif //IMPLEMENTATION_NODES_HPP

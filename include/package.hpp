@@ -12,9 +12,6 @@ public:
     Package();
     explicit Package(ElementID m);
 
-    Package(Package &to_copy) = delete;
-    Package operator=(Package &beta) = delete;
-
     //    Move Constructor by default
     Package(Package &&to_move) noexcept;
 

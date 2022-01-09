@@ -33,19 +33,41 @@ void ReceiverPreferences::remove_receiver(IPackageReceiver *r)
 
 IPackageReceiver *ReceiverPreferences::choose_receiver()
 {
+    double value = pg_.operator()();
     double sum = 0;
     for (auto it = map_.begin(); it != map_.end(); ++it)
     {
         sum += it->second;
-        if (sum >= pg_)
+        if (sum >= value)
         {
             return it->first;
         }
     }
+    return nullptr;
+}
+
+std::optional<Package> &PackageSender::get_sending_buffer()
+{
+    if (buffer_)
+        return buffer_;
 }
 
 void PackageSender::send_package()
 {
     if (buffer_)
-        return *buffer_;
+    {
+        receiver_preferences_.choose_receiver()->receive_package((Package &&) std::move(buffer_));
+    }
+}
+
+void Worker::do_work(Time t) {
+    if (!t_) {
+        t_ = t;
+        push_package(q_->pop());
+    }
+    else {
+        if (t_ + pd_ == t) {
+            t_ = 0;
+        }
+    }
 }
