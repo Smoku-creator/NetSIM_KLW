@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="implementation" targetName="gmock" />
+      <config projectName="implementation" targetName="gtest" />
+      <config projectName="implementation" targetName="net" />
+      <config projectName="implementation" targetName="gmock_main" />
+      <config projectName="implementation" targetName="net_test" />
+      <config projectName="implementation" targetName="gtest_main" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="640e7166-add4-49ee-90fe-600c1c86a5a5" name="Default Changelist" comment="Jedziem">
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/src/nodes.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/src/nodes.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/src/nodes.cpp.obj.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/src/package.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/src/package.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/src/storage_types.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/src/storage_types.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/test/test_nodes.cpp.obj.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/test/test_package.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/test/test_package.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/test/test_storage_types.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/test/test_storage_types.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/nodes.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/nodes.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nodes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_nodes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_nodes.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2021" />
+    <option name="minorVersion" value="3.2" />
+  </component>
+  <component name="ProjectId" id="22W16G99dlHIBoj1TnnWslMWGkS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="cmake.loaded.for.project" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../TSP/szablon/include/TSP.hpp" />
+  </component>
+  <component name="RunManager" selected="Google Test.All in main_gtest.cpp">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in main_gtest.cpp" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="implementation" TARGET_NAME="net_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="implementation" RUN_TARGET_NAME="net_test" TEST_PATTERN="all-tests(file://$PROJECT_DIR$/test/main_gtest.cpp)" TEST_MODE="PATTERN">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in test_package.cpp" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="implementation" TARGET_NAME="net_test" RUN_TARGET_PROJECT_NAME="implementation" RUN_TARGET_NAME="net_test" TEST_PATTERN="all-tests(file://$PROJECT_DIR$/test/test_package.cpp)" TEST_MODE="PATTERN">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PackageTest.IsAssignedIdLowest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="implementation" TARGET_NAME="net_test" RUN_TARGET_PROJECT_NAME="implementation" RUN_TARGET_NAME="net_test" TEST_CLASS="PackageTest" TEST_METHOD="IsAssignedIdLowest" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RampTest.IsDeliveryOnTime" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="implementation" TARGET_NAME="net_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="implementation" RUN_TARGET_NAME="net_test" TEST_CLASS="RampTest" TEST_METHOD="IsDeliveryOnTime" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WorkerTest.HasBuffer" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="implementation" TARGET_NAME="net_test" RUN_TARGET_PROJECT_NAME="implementation" RUN_TARGET_NAME="net_test" TEST_CLASS="WorkerTest" TEST_METHOD="HasBuffer" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gmock" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="implementation" TARGET_NAME="gmock" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gmock_main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="implementation" TARGET_NAME="gmock_main" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gtest" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="implementation" TARGET_NAME="gtest" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gtest_main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="implementation" TARGET_NAME="gtest_main" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="net" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="implementation" TARGET_NAME="net" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="implementation" RUN_TARGET_NAME="net">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.net" />
+      <item itemvalue="CMake Application.gmock" />
+      <item itemvalue="CMake Application.gmock_main" />
+      <item itemvalue="CMake Application.gtest" />
+      <item itemvalue="CMake Application.gtest_main" />
+      <item itemvalue="Google Test.PackageTest.IsAssignedIdLowest" />
+      <item itemvalue="Google Test.All in test_package.cpp" />
+      <item itemvalue="Google Test.All in main_gtest.cpp" />
+      <item itemvalue="Google Test.RampTest.IsDeliveryOnTime" />
+      <item itemvalue="Google Test.WorkerTest.HasBuffer" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Google Test.All in main_gtest.cpp" />
+        <item itemvalue="Google Test.WorkerTest.HasBuffer" />
+        <item itemvalue="Google Test.RampTest.IsDeliveryOnTime" />
+        <item itemvalue="Google Test.All in test_package.cpp" />
+        <item itemvalue="Google Test.PackageTest.IsAssignedIdLowest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="640e7166-add4-49ee-90fe-600c1c86a5a5" name="Default Changelist" comment="" />
+      <created>1639938359093</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1639938359093</updated>
+      <workItem from="1639938367193" duration="41859000" />
+      <workItem from="1640088305900" duration="2555000" />
+      <workItem from="1640091496447" duration="6270000" />
+      <workItem from="1640119707824" duration="1395000" />
+      <workItem from="1640179105717" duration="1438000" />
+      <workItem from="1640181853000" duration="879000" />
+      <workItem from="1640207187748" duration="1644000" />
+      <workItem from="1641229259014" duration="544000" />
+      <workItem from="1641231292244" duration="2599000" />
+      <workItem from="1641240129437" duration="4211000" />
+      <workItem from="1641247715138" duration="9286000" />
+      <workItem from="1641404878380" duration="103000" />
+      <workItem from="1641503733159" duration="1902000" />
+      <workItem from="1641571432670" duration="736000" />
+      <workItem from="1641585222006" duration="328000" />
+      <workItem from="1641590638143" duration="4797000" />
+      <workItem from="1641598681482" duration="6000" />
+      <workItem from="1641655240760" duration="4164000" />
+      <workItem from="1641660053320" duration="11600000" />
+    </task>
+    <task id="LOCAL-00001" summary="Poprawienie z testami">
+      <created>1640118063396</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1640118063396</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Dodanie odpowiednich const-ów w metodach PackageQueue">
+      <created>1640179364726</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1640179364726</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Jedziem">
+      <created>1641659913463</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1641659913463</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Poprawienie z testami" />
+    <MESSAGE value="Dodanie odpowiednich const-ów w metodach PackageQueue" />
+    <MESSAGE value="Jedziem" />
+    <option name="LAST_COMMIT_MESSAGE" value="Jedziem" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/test/test_storage_types.cpp</url>
+          <line>11</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
