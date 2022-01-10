@@ -44,13 +44,14 @@ public:
     [[nodiscard]] const_iterator begin() const { return collection_.begin(); }
     [[nodiscard]] iterator end() { return collection_.end(); }
     [[nodiscard]] iterator begin() { return collection_.begin(); }
+private:
     container_t collection_;
 };
 
 template <class Node>
 void NodeCollection<Node>::add(Node &&node)
 {
-    collection_.emplace_back(std::move(node));
+    collection_.push_back(std::move(node));
 }
 
 template <class Node>
@@ -109,8 +110,21 @@ public:
     void do_work(Time t);
 
 private:
-    void remove_receiver(NodeCollection<Worker> &collection, ElementID id);
-    void remove_receiver(NodeCollection<Ramp> &collection, ElementID id);
+    template <class Node>
+    void remove_receiver(NodeCollection<Node> &collection, ElementID id)
+    {
+        for (auto &node : collection)
+        {
+            auto map = node.receiver_preferences_.get_preferences();
+            for (auto & it : map)
+            {
+                if (it.first->get_id() == id)
+                {
+                    node.receiver_preferences_.remove_receiver(it.first);
+                }
+            }
+        }
+    }
 
     NodeCollection<Ramp> ramp_;
     NodeCollection<Worker> worker_;
