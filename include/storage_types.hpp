@@ -25,10 +25,10 @@ public:
     [[nodiscard]] virtual size_t size() const = 0;
 
 //    Declared iterators for 'Read-only' operations
-    virtual const_iterator cbegin() = 0;
-    virtual const_iterator cend() = 0;
-    virtual iterator begin() = 0;
-    virtual iterator end() = 0;
+    [[nodiscard]] virtual const_iterator cbegin() const = 0;
+    [[nodiscard]] virtual const_iterator cend() const = 0;
+    [[nodiscard]] virtual const_iterator begin() const = 0;
+    [[nodiscard]] virtual const_iterator end() const = 0;
 
     virtual ~IPackageStockpile() = default;
 };
@@ -58,10 +58,10 @@ public:
     [[nodiscard]] bool empty() const override { return queue_.empty(); }
 
 //    Implementation of IPackageStockpile 'Read-only' iterators
-    IPackageStockpile::const_iterator cbegin() override { return queue_.cbegin(); }
-    IPackageStockpile::const_iterator cend() override { return queue_.cend(); }
-    IPackageStockpile::iterator begin() override { return queue_.begin(); }
-    IPackageStockpile::iterator end() override { return queue_.end(); }
+    [[nodiscard]] IPackageStockpile::const_iterator cbegin() const override { return queue_.cbegin(); }
+    [[nodiscard]] IPackageStockpile::const_iterator cend() const override { return queue_.cend(); }
+    [[nodiscard]] IPackageStockpile::const_iterator begin() const override { return queue_.begin(); }
+    [[nodiscard]] IPackageStockpile::const_iterator end() const override { return queue_.end(); }
 
 private:
     std::list<Package> queue_;
