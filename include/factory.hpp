@@ -50,7 +50,7 @@ public:
 template <class Node>
 void NodeCollection<Node>::add(Node &&node)
 {
-    collection_.emplace_back(std::move(node));
+    collection_.push_back(std::move(node));
 }
 
 template <class Node>
