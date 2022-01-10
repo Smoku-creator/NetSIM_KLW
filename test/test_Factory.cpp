@@ -1,76 +1,75 @@
-/*
-//#include "gmock/gmock.h"
-#include "gtest/gtest.h"
+////#include "gmock/gmock.h"
+//#include "gtest/gtest.h"
+//
+//#include "factory.hpp"
+//#include "nodes.hpp"
+//
+//// DEBUG
+//#include <iostream>
+//
+//using ::std::cout;
+//using ::std::endl;
+//
+//TEST(FactoryTest, IsConsistentCorrect) {
+//    // R -> W -> S
+//
+//    Factory factory;
+//    factory.add_ramp(Ramp(1, 1));
+//    factory.add_worker(Worker(1, 1, std::make_unique<PackageQueue>(PackageQueueType::FIFO)));
+//    factory.add_storehouse(Storehouse(1));
+//
+//    Ramp& r = *(factory.find_ramp_by_id(1));
+//    r.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(1)));
+//
+//    Worker& w = *(factory.find_worker_by_id(1));
+//    w.receiver_preferences_.add_receiver(&(*factory.find_storehouse_by_id(1)));
+//
+//    EXPECT_TRUE(factory.is_consistent());
+//}
+//
+//TEST(FactoryTest, IsConsistentMissingLink1) {
+//    // R -> W .. S
+//    //      W -> W
+//
+//    Factory factory;
+//    factory.add_ramp(Ramp(1, 1));
+//    factory.add_worker(Worker(1, 1, std::make_unique<PackageQueue>(PackageQueueType::FIFO)));
+//    factory.add_storehouse(Storehouse(1));
+//
+//    Ramp& r = *(factory.find_ramp_by_id(1));
+//    r.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(1)));
+//
+//    Worker& w = *(factory.find_worker_by_id(1));
+//    w.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(1)));
+//
+//    EXPECT_FALSE(factory.is_consistent());
+//}
+//
+//TEST(FactoryTest, IsConsistentMissingLink2) {
+//    // R -> W1 -> S
+//    //      W1 -> W2 -> W2
+//
+//    Factory factory;
+//    factory.add_ramp(Ramp(1, 1));
+//    factory.add_worker(Worker(1, 1, std::make_unique<PackageQueue>(PackageQueueType::FIFO)));
+//    factory.add_worker(Worker(2, 1, std::make_unique<PackageQueue>(PackageQueueType::FIFO)));
+//    factory.add_storehouse(Storehouse(1));
+//
+//    Ramp& r = *(factory.find_ramp_by_id(1));
+//    r.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(1)));
+//
+//    Worker& w1 = *(factory.find_worker_by_id(1));
+//    w1.receiver_preferences_.add_receiver(&(*factory.find_storehouse_by_id(1)));
+//    w1.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(2)));
+//
+//    Worker& w2 = *(factory.find_worker_by_id(2));
+//    w2.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(2)));
+//
+//    EXPECT_FALSE(factory.is_consistent());
+//}
 
-#include "factory.hpp"
-#include "nodes.hpp"
+//TEST(FactoryTest, RemoveWorkerNoSuchReceiver) {
 
-// DEBUG
-#include <iostream>
-
-using ::std::cout;
-using ::std::endl;
-
-TEST(FactoryTest, IsConsistentCorrect) {
-    // R -> W -> S
-
-    Factory factory;
-    factory.add_ramp(Ramp(1, 1));
-    factory.add_worker(Worker(1, 1, std::make_unique<PackageQueue>(PackageQueueType::FIFO)));
-    factory.add_storehouse(Storehouse(1));
-
-    Ramp& r = *(factory.find_ramp_by_id(1));
-    r.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(1)));
-
-    Worker& w = *(factory.find_worker_by_id(1));
-    w.receiver_preferences_.add_receiver(&(*factory.find_storehouse_by_id(1)));
-
-    EXPECT_TRUE(factory.is_consistent());
-}
-
-TEST(FactoryTest, IsConsistentMissingLink1) {
-    // R -> W .. S
-    //      W -> W
-
-    Factory factory;
-    factory.add_ramp(Ramp(1, 1));
-    factory.add_worker(Worker(1, 1, std::make_unique<PackageQueue>(PackageQueueType::FIFO)));
-    factory.add_storehouse(Storehouse(1));
-
-    Ramp& r = *(factory.find_ramp_by_id(1));
-    r.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(1)));
-
-    Worker& w = *(factory.find_worker_by_id(1));
-    w.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(1)));
-
-    EXPECT_FALSE(factory.is_consistent());
-}
-
-TEST(FactoryTest, IsConsistentMissingLink2) {
-    // R -> W1 -> S
-    //      W1 -> W2 -> W2
-
-    Factory factory;
-    factory.add_ramp(Ramp(1, 1));
-    factory.add_worker(Worker(1, 1, std::make_unique<PackageQueue>(PackageQueueType::FIFO)));
-    factory.add_worker(Worker(2, 1, std::make_unique<PackageQueue>(PackageQueueType::FIFO)));
-    factory.add_storehouse(Storehouse(1));
-
-    Ramp& r = *(factory.find_ramp_by_id(1));
-    r.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(1)));
-
-    Worker& w1 = *(factory.find_worker_by_id(1));
-    w1.receiver_preferences_.add_receiver(&(*factory.find_storehouse_by_id(1)));
-    w1.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(2)));
-
-    Worker& w2 = *(factory.find_worker_by_id(2));
-    w2.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(2)));
-
-    EXPECT_FALSE(factory.is_consistent());
-}
-
-TEST(FactoryTest, RemoveWorkerNoSuchReceiver) {
-    */
 /* Próba usunięcia nieistniejącego odbiorcy - dopuszczalne. *//*
 
 

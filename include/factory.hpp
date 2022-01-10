@@ -6,7 +6,6 @@
 #define IMPLEMENTATION_FACTORY_HPP
 
 #include "nodes.hpp"
-#include <vector>
 
 enum class NodeColor
 {
@@ -41,8 +40,10 @@ public:
 
     [[nodiscard]] const_iterator cbegin() const { return collection_.cbegin(); }
     [[nodiscard]] const_iterator cend() const { return collection_.cend(); }
-    iterator end() { return collection_.end(); }
-    iterator begin() { return collection_.begin(); }
+    [[nodiscard]] const_iterator end() const { return collection_.end(); }
+    [[nodiscard]] const_iterator begin() const { return collection_.begin(); }
+    [[nodiscard]] iterator end() { return collection_.end(); }
+    [[nodiscard]] iterator begin() { return collection_.begin(); }
     container_t collection_;
 };
 
@@ -68,6 +69,7 @@ class Factory
 public:
     void add_ramp(Ramp &&p) { ramp_.add(std::move(p)); }
     void remove_ramp(ElementID id) { ramp_.remove_by_id(id); }
+
     NodeCollection<Ramp>::iterator find_ramp_by_id(ElementID id) { return ramp_.find_by_id(id); }
     [[nodiscard]] NodeCollection<Ramp>::const_iterator find_ramp_by_id(ElementID id) const { return ramp_.find_by_id(id); }
     [[nodiscard]] NodeCollection<Ramp>::const_iterator ramp_cbegin() const { return ramp_.cbegin(); }
@@ -80,6 +82,7 @@ public:
         remove_receiver(ramp_, id);
         worker_.remove_by_id(id);
     }
+
     NodeCollection<Worker>::iterator find_worker_by_id(ElementID id) { return worker_.find_by_id(id); }
     [[nodiscard]] NodeCollection<Worker>::const_iterator find_worker_by_id(ElementID id) const { return worker_.find_by_id(id); }
     [[nodiscard]] NodeCollection<Worker>::const_iterator worker_cbegin() const { return worker_.cbegin(); }
@@ -96,8 +99,8 @@ public:
     [[nodiscard]] NodeCollection<Storehouse>::const_iterator storehouse_cbegin() const { return storehouse_.cbegin(); }
     [[nodiscard]] NodeCollection<Storehouse>::const_iterator storehouse_cend() const { return storehouse_.cend(); }
 
-    [[nodiscard]] bool is_consistent() const { return true; }
-    bool has_reachable_storehouse(const PackageSender *sender, std::map<const PackageSender *, NodeColor> &node_colors) const {}
+    [[nodiscard]] bool is_consistent() const;
+    bool has_reachable_storehouse(const PackageSender* sender, std::map<const PackageSender*, NodeColor>& node_colors) const;
 
     void do_deliveries(Time t);
 
@@ -108,6 +111,7 @@ public:
 private:
     void remove_receiver(NodeCollection<Worker> &collection, ElementID id);
     void remove_receiver(NodeCollection<Ramp> &collection, ElementID id);
+
     NodeCollection<Ramp> ramp_;
     NodeCollection<Worker> worker_;
     NodeCollection<Storehouse> storehouse_;
