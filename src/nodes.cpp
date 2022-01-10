@@ -48,8 +48,7 @@ IPackageReceiver *ReceiverPreferences::choose_receiver()
     return nullptr;
 }
 
-void PackageSender::send_package()
-{
+void PackageSender::send_package() {
     if (buffer_)
     {
         receiver_preferences_.choose_receiver()->receive_package((Package&&) std::move(buffer_));
@@ -71,7 +70,6 @@ void Worker::do_work(Time t) {
     }
     else {
         if (t_ + pd_ == t) {
-            send_package();
             t_ = 0;
         }
     }

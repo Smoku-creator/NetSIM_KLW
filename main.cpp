@@ -2,18 +2,20 @@
 // Created by Wiktor on 19.12.2021.
 //
 
-#include "nodes.hpp"
+#include "factory.hpp"
 
 
 #include <iostream>
 
 int main() {
-    std::vector<int> dob;
-    dob.push_back(1);
-    dob.push_back(2);
-    std::vector<int>::iterator it;
-    it = dob.begin();
-    std::cout << *it << std::endl;
-    *it = *it + 1;
-    std::cout << *it << std::endl;
+    Factory factory;
+    factory.add_ramp(Ramp(1, 1));
+    factory.add_worker(Worker(1, 1, std::make_unique<PackageQueue>(PackageQueueType::FIFO)));
+    factory.add_storehouse(Storehouse(1));
+
+    Ramp& r = *(factory.find_ramp_by_id(1));
+    r.receiver_preferences_.add_receiver(&(*factory.find_worker_by_id(1)));
+
+    Worker& w = *(factory.find_worker_by_id(1));
+    w.receiver_preferences_.add_receiver(&(*factory.find_storehouse_by_id(1)));
 }
