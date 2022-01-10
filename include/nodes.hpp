@@ -19,12 +19,11 @@ public:
     [[nodiscard]] virtual ElementID get_id() const = 0;
     #if (EXERCISE_ID > EXERCISE_ID_NODES)
         [[nodiscard]] virtual ReceiverType get_receiver_type() const = 0;
-
-        [[nodiscard]] virtual IPackageStockpile::const_iterator cbegin() const = 0;
-        [[nodiscard]] virtual IPackageStockpile::const_iterator cend() const = 0;
-        [[nodiscard]] virtual IPackageStockpile::const_iterator begin() const = 0;
-        [[nodiscard]] virtual IPackageStockpile::const_iterator end() const = 0;
     #endif
+    [[nodiscard]] virtual IPackageStockpile::const_iterator cbegin() const = 0;
+    [[nodiscard]] virtual IPackageStockpile::const_iterator cend() const = 0;
+    [[nodiscard]] virtual IPackageStockpile::const_iterator begin() const = 0;
+    [[nodiscard]] virtual IPackageStockpile::const_iterator end() const = 0;
 };
 
 class Storehouse : public IPackageReceiver
@@ -38,12 +37,11 @@ public:
     void receive_package(Package&& p) override { d_->push(std::move(p)); }
     #if (EXERCISE_ID > EXERCISE_ID_NODES)
         [[nodiscard]] ReceiverType get_receiver_type() const override { return _type; }
-
-        [[nodiscard]] IPackageStockpile::const_iterator cbegin() const override { return d_->cbegin(); }
-        [[nodiscard]] IPackageStockpile::const_iterator cend() const override { return d_->cend(); }
-        [[nodiscard]] IPackageStockpile::const_iterator begin() const override { return d_->begin(); }
-        [[nodiscard]] IPackageStockpile::const_iterator end() const override { return d_->end(); }
     #endif
+    [[nodiscard]] IPackageStockpile::const_iterator cbegin() const override { return d_->cbegin(); }
+    [[nodiscard]] IPackageStockpile::const_iterator cend() const override { return d_->cend(); }
+    [[nodiscard]] IPackageStockpile::const_iterator begin() const override { return d_->begin(); }
+    [[nodiscard]] IPackageStockpile::const_iterator end() const override { return d_->end(); }
 private:
     ElementID _id;
     std::unique_ptr<IPackageStockpile> d_;
@@ -94,7 +92,7 @@ public:
 
 protected:
 
-    virtual void push_package(Package &&p) { buffer_.emplace(std::move(p)); }
+    void push_package(Package &&p) { buffer_.emplace(std::move(p)); }
 
 
 private:
@@ -117,11 +115,11 @@ public:
     #if (EXERCISE_ID > EXERCISE_ID_NODES)
         [[nodiscard]] ReceiverType get_receiver_type() const override { return _type; }
 
-        [[nodiscard]] IPackageStockpile::const_iterator cbegin() const override { return q_->cbegin(); }
-        [[nodiscard]] IPackageStockpile::const_iterator cend() const override { return q_->cend(); }
-        [[nodiscard]] IPackageStockpile::const_iterator begin() const override { return q_->begin(); }
-        [[nodiscard]] IPackageStockpile::const_iterator end() const override { return q_->end(); }
     #endif
+    [[nodiscard]] IPackageStockpile::const_iterator cbegin() const override { return q_->cbegin(); }
+    [[nodiscard]] IPackageStockpile::const_iterator cend() const override { return q_->cend(); }
+    [[nodiscard]] IPackageStockpile::const_iterator begin() const override { return q_->begin(); }
+    [[nodiscard]] IPackageStockpile::const_iterator end() const override { return q_->end(); }
 
 private:
     ElementID id_;

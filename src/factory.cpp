@@ -147,33 +147,3 @@ void Factory::do_work(Time t)
     }
 }
 
-void Factory::remove_receiver(NodeCollection<Worker> &collection, ElementID id)
-{
-    for (auto &node : collection)
-    {
-        auto map = node.receiver_preferences_.get_preferences();
-        for (auto & it : map)
-        {
-            if (it.first->get_id() == id)
-            {
-                node.receiver_preferences_.remove_receiver(it.first);
-            }
-        }
-    }
-}
-
-void Factory::remove_receiver(NodeCollection<Ramp> &collection, ElementID id)
-{
-    for (auto& node : collection)
-    {
-        auto map = node.receiver_preferences_.get_preferences();
-        for (auto & it : map)
-        {
-            if(it.first->get_id() == id)
-            {
-                node.receiver_preferences_.remove_receiver(it.first);
-            }
-        }
-
-    }
-}
