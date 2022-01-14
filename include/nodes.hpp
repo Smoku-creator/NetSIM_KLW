@@ -86,7 +86,7 @@ public:
     PackageSender(PackageSender &&) = default;
 
     void send_package();
-    std::optional<Package> &get_sending_buffer();
+    [[nodiscard]] std::optional<Package> &get_sending_buffer() const;
 
     ReceiverPreferences receiver_preferences_;
 
@@ -117,17 +117,20 @@ public:
 
     #if (EXERCISE_ID > EXERCISE_ID_NODES)
         [[nodiscard]] ReceiverType get_receiver_type() const override { return _type; }
-
     #endif
     [[nodiscard]] IPackageStockpile::const_iterator cbegin() const override { return q_->cbegin(); }
     [[nodiscard]] IPackageStockpile::const_iterator cend() const override { return q_->cend(); }
     [[nodiscard]] IPackageStockpile::const_iterator begin() const override { return q_->begin(); }
     [[nodiscard]] IPackageStockpile::const_iterator end() const override { return q_->end(); }
 
+    [[nodiscard]] IPackageQueue *get_queue() const { return &*q_; }
+    [[nodiscard]] std::optional<Package>& get_processing_buffer() const;
+
 private:
     ElementID id_;
     TimeOffset pd_;
     std::unique_ptr<IPackageQueue> q_;
+    std::optional<Package> pbuffer_;
     Time t_;
     const static ReceiverType _type = ReceiverType::WORKER;
 };

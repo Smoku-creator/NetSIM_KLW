@@ -16,17 +16,20 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="640e7166-add4-49ee-90fe-600c1c86a5a5" name="Default Changelist" comment="Funkcje od Antka i poprawki wiktora w szablonie">
+    <list default="true" id="640e7166-add4-49ee-90fe-600c1c86a5a5" name="Default Changelist" comment="Można wysyłać na UPeL">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/src/nodes.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/src/nodes.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/src/storage_types.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/src/storage_types.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/test/test_storage_types.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/net_test.dir/test/test_storage_types.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/factory.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/factory.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/nodes.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/nodes.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/storage_types.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/storage_types.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/factory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/factory.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_Factory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_Factory.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_nodes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_nodes.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nodes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/nodes.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/storage_types.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/storage_types.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_factory_io.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_factory_io.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +89,7 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PackageTest.IsAssignedIdLowest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="implementation" TARGET_NAME="net_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="implementation" RUN_TARGET_NAME="net_test" TEST_CLASS="PackageTest" TEST_METHOD="IsAssignedIdLowest" TEST_MODE="SUITE_TEST">
+    <configuration name="FactoryIOTest.ParseRamp" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="implementation" TARGET_NAME="net_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="implementation" RUN_TARGET_NAME="net_test" TEST_CLASS="FactoryIOTest" TEST_METHOD="ParseRamp" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -135,19 +138,19 @@
       <item itemvalue="CMake Application.gmock_main" />
       <item itemvalue="CMake Application.gtest" />
       <item itemvalue="CMake Application.gtest_main" />
-      <item itemvalue="Google Test.PackageTest.IsAssignedIdLowest" />
       <item itemvalue="Google Test.All in test_package.cpp" />
       <item itemvalue="Google Test.All in main_gtest.cpp" />
       <item itemvalue="Google Test.RampTest.IsDeliveryOnTime" />
       <item itemvalue="Google Test.WorkerTest.HasBuffer" />
+      <item itemvalue="Google Test.FactoryIOTest.ParseRamp" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Google Test.All in main_gtest.cpp" />
+        <item itemvalue="Google Test.FactoryIOTest.ParseRamp" />
         <item itemvalue="Google Test.WorkerTest.HasBuffer" />
         <item itemvalue="Google Test.RampTest.IsDeliveryOnTime" />
         <item itemvalue="Google Test.All in test_package.cpp" />
-        <item itemvalue="Google Test.PackageTest.IsAssignedIdLowest" />
       </list>
     </recent_temporary>
   </component>
@@ -179,7 +182,11 @@
       <workItem from="1641655240760" duration="4164000" />
       <workItem from="1641660053320" duration="13869000" />
       <workItem from="1641741899377" duration="10490000" />
-      <workItem from="1641760994927" duration="14925000" />
+      <workItem from="1641760994927" duration="17584000" />
+      <workItem from="1641843537559" duration="1973000" />
+      <workItem from="1641850023806" duration="277000" />
+      <workItem from="1641850606151" duration="4605000" />
+      <workItem from="1642028645477" duration="23524000" />
     </task>
     <task id="LOCAL-00001" summary="Poprawienie z testami">
       <created>1640118063396</created>
@@ -223,7 +230,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641773957539</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Ostateczna wersja nodes.cpp">
+      <created>1641778730886</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1641778730886</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Można wysyłać na UPeL">
+      <created>1641845513101</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1641845513101</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,6 +266,8 @@
     <MESSAGE value="Dodanie odpowiednich const-ów w metodach PackageQueue" />
     <MESSAGE value="Jedziem" />
     <MESSAGE value="Funkcje od Antka i poprawki wiktora w szablonie" />
-    <option name="LAST_COMMIT_MESSAGE" value="Funkcje od Antka i poprawki wiktora w szablonie" />
+    <MESSAGE value="Ostateczna wersja nodes.cpp" />
+    <MESSAGE value="Można wysyłać na UPeL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Można wysyłać na UPeL" />
   </component>
 </project>

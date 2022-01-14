@@ -51,26 +51,40 @@ IPackageReceiver *ReceiverPreferences::choose_receiver()
 void PackageSender::send_package() {
     if (buffer_)
     {
-        receiver_preferences_.choose_receiver()->receive_package(std::move(buffer_.value()));
+        receiver_preferences_.choose_receiver()->receive_package(reinterpret_cast<Package&&>(get_sending_buffer()));
         buffer_.reset();
     }
 }
 
-std::optional<Package>& PackageSender::get_sending_buffer() {
+std::optional<Package>& PackageSender::get_sending_buffer() const {
     if (buffer_) {
-        return buffer_;
+        return (std::optional<Package>&) std::move(buffer_);
     }
     return (std::optional<Package>&) std::nullopt;
 }
 
 void Worker::do_work(Time t) {
-    if (!t_) {
+    if (!t_ && !pbuffer_) {
         t_ = t;
-        push_package(q_->pop());
+        if (pd_ == 1) {
+            push_package(q_->pop());
+        }
+        else {
+            pbuffer_.emplace(q_->pop());
+        }
     }
-    else {
-        if (t_ + pd_ == t) {
+    else if (t_) {
+        if (t_ + pd_ - 1 == t) {
+            push_package(std::move(pbuffer_.value()));
+            pbuffer_.reset();
             t_ = 0;
         }
     }
+}
+
+std::optional<Package>& Worker::get_processing_buffer() const {
+    if (pbuffer_) {
+        return (std::optional<Package>&) std::move(pbuffer_);
+    }
+    return (std::optional<Package>&) std::nullopt;
 }
