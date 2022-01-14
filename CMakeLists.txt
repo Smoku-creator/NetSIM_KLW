@@ -42,3 +42,4 @@ add_subdirectory(googletest-master)
 target_link_libraries(net_test gmock)
 
 target_compile_definitions(net_test PUBLIC EXERCISE_ID=3)
+target_compile_definitions(net PUBLIC EXERCISE_ID=3)

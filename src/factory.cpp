@@ -147,3 +147,118 @@ void Factory::do_work(Time t)
     }
 }
 
+ParsedLineData parse_line(const std::string& line) {
+    std::istringstream token_stream(line);
+    std::vector<std::string> tokens;
+    char delimiter = ' ';
+    char delim2 = '=';
+    std::string token;
+    ParsedLineData data;
+    std::vector<std::string> temp;
+    int i = 0;
+
+    while (std::getline(token_stream, token, delimiter)) {
+        if (!i) {
+            data.element_type = TypeMap.find(token)->second;
+        }
+        else {
+            tokens.push_back(token);
+        }
+        ++i;
+    }
+
+    for (const auto& j : tokens) {
+        std::istringstream tokens_stream(j);
+        while (std::getline(tokens_stream, token, delim2)) {
+            temp.push_back(token);
+        }
+        data.parameters.insert({*temp.begin(),*temp.rbegin()});
+//        delivery-interval wyświetla się pierwsze po wypisaniu
+        temp.clear();
+    }
+
+    return data;
+}
+
+std::map<std::string,ElementType> TypeMap = {
+        {"LOADING_RAMP", ElementType::RAMP},
+        {"WORKER", ElementType::WORKER},
+        {"STOREHOUSE",ElementType::STOREHOUSE},
+        {"LINK",ElementType::LINK}
+};
+
+Factory load_factory_structure(std::istream& is) {
+    Factory factory;
+    std::string line;
+    ParsedLineData cont;
+
+    while (std::getline(is, line)) {
+        if (line[0] != ';' && !line.empty()) {
+            cont = parse_line(line);
+            switch (cont.element_type) {
+                case ElementType::RAMP: {
+                    factory.add_ramp(Ramp(std::stoi(cont.parameters.rbegin()->second),
+                                          std::stoi(cont.parameters.begin()->second)));
+                    break;
+                }
+                case ElementType::WORKER: {
+                    if (queue_type(PackageQueueType::FIFO) == cont.parameters.rbegin()->second) {
+                        factory.add_worker(Worker(std::stoi(cont.parameters.begin()->second),
+                                                  std::stoi(std::next(cont.parameters.begin())->second),
+                                                  std::make_unique<PackageQueue>(PackageQueueType::FIFO)));
+                    }
+                    else {
+                        factory.add_worker(Worker(std::stoi(cont.parameters.begin()->second),
+                                                  std::stoi(std::next(cont.parameters.begin())->second),
+                                                  std::make_unique<PackageQueue>(PackageQueueType::LIFO)));
+                    }
+                    break;
+                }
+                case ElementType::STOREHOUSE: {
+                    factory.add_storehouse(Storehouse(std::stoi(cont.parameters.begin()->second)));
+                    break;
+                }
+                case ElementType::LINK: {
+                    char delim3 = '-';
+                    std::string token;
+                    std::vector<std::string> new_things;
+                    std::vector<std::string> temp;
+                    new_things.push_back(cont.parameters.rbegin()->second);
+                    new_things.push_back(cont.parameters.begin()->second);
+                    for (const auto& i : new_things) {
+                        std::istringstream tokens_stream(i);
+                        while (std::getline(tokens_stream, token, delim3)) {
+                            temp.push_back(token);
+                        }
+                    }
+                    int id_1 = std::stoi(*std::next(temp.begin()));
+                    int id_2 = std::stoi(temp.back());
+                    if (*temp.front().begin() == 'r') {
+                        Ramp &r = *(factory.find_ramp_by_id(id_1));
+                        if (*(std::next(std::next(temp.begin())))->begin() == 'w') {
+                            Worker &w = *(factory.find_worker_by_id(id_2));
+                            r.receiver_preferences_.add_receiver(&w);
+                        }
+                        else {
+                            Storehouse &s = *(factory.find_storehouse_by_id(id_2));
+                            r.receiver_preferences_.add_receiver(&s);
+                        }
+                    }
+                    else {
+                        Worker &w = *(factory.find_worker_by_id(id_1));
+                        if (*(std::next(std::next(temp.begin())))->begin() == 'w') {
+                            Worker &w1 = *(factory.find_worker_by_id(id_2));
+                            w.receiver_preferences_.add_receiver(&w1);
+                        }
+                        else {
+                            Storehouse &s = *(factory.find_storehouse_by_id(id_2));
+                            w.receiver_preferences_.add_receiver(&s);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    return factory;
+}
