@@ -26,3 +26,18 @@ Package PackageQueue::pop() {
 //    Return conditioned Package
     return popped;
 }
+
+std::string queue_type(PackageQueueType look) {
+    std::string snap;
+    switch( look ) {
+        case PackageQueueType::LIFO: {
+            snap = "LIFO";
+            break;
+        }
+        case PackageQueueType::FIFO: {
+            snap = "FIFO";
+            break;
+        }
+    }
+    return snap;
+}

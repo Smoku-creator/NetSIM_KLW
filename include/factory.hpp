@@ -6,6 +6,27 @@
 #define IMPLEMENTATION_FACTORY_HPP
 
 #include "nodes.hpp"
+#include <iostream>
+#include <sstream>
+#include <fstream>
+
+enum class ElementType
+{
+    RAMP,
+    WORKER,
+    STOREHOUSE,
+    LINK
+};
+
+extern std::map<std::string,ElementType> TypeMap;
+
+struct ParsedLineData
+{
+    ElementType element_type;
+    std::map<std::string,std::string> parameters;
+};
+
+ParsedLineData parse_line(const std::string& line);
 
 enum class NodeColor
 {
@@ -130,5 +151,7 @@ private:
     NodeCollection<Worker> worker_;
     NodeCollection<Storehouse> storehouse_;
 };
+
+Factory load_factory_structure(std::istream& is);
 
 #endif //IMPLEMENTATION_FACTORY_HPP

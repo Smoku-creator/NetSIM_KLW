@@ -10,6 +10,8 @@ enum class PackageQueueType {
     FIFO, LIFO
 };
 
+std::string queue_type(PackageQueueType look);
+
 class IPackageStockpile {
 public:
 
