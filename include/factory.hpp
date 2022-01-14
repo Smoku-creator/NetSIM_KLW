@@ -65,6 +65,7 @@ public:
     [[nodiscard]] const_iterator begin() const { return collection_.begin(); }
     [[nodiscard]] iterator end() { return collection_.end(); }
     [[nodiscard]] iterator begin() { return collection_.begin(); }
+
 private:
     container_t collection_;
 };
@@ -116,13 +117,14 @@ public:
         remove_receiver(worker_, id);
         storehouse_.remove_by_id(id);
     }
+
     NodeCollection<Storehouse>::iterator find_storehouse_by_id(ElementID id) { return storehouse_.find_by_id(id); }
     [[nodiscard]] NodeCollection<Storehouse>::const_iterator find_storehouse_by_id(ElementID id) const { return storehouse_.find_by_id(id); }
     [[nodiscard]] NodeCollection<Storehouse>::const_iterator storehouse_cbegin() const { return storehouse_.cbegin(); }
     [[nodiscard]] NodeCollection<Storehouse>::const_iterator storehouse_cend() const { return storehouse_.cend(); }
 
     [[nodiscard]] bool is_consistent() const;
-    bool has_reachable_storehouse(const PackageSender* sender, std::map<const PackageSender*, NodeColor>& node_colors) const;
+    bool has_reachable_storehouse(const PackageSender *sender, std::map<const PackageSender *, NodeColor> &node_colors) const;
 
     void do_deliveries(Time t);
 
@@ -137,7 +139,7 @@ private:
         for (auto &node : collection)
         {
             auto map = node.receiver_preferences_.get_preferences();
-            for (auto & it : map)
+            for (auto &it : map)
             {
                 if (it.first->get_id() == id)
                 {
@@ -152,6 +154,8 @@ private:
     NodeCollection<Storehouse> storehouse_;
 };
 
+
 Factory load_factory_structure(std::istream& is);
+
 
 #endif //IMPLEMENTATION_FACTORY_HPP
