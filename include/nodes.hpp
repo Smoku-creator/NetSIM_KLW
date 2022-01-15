@@ -113,6 +113,9 @@ public:
     [[nodiscard]] ElementID get_id() const override { return id_; }
     void receive_package(Package&& p) override { q_->push(std::move(p)); }
 
+    // alternatywnie: &(*q_) 
+    IPackageQueue* get_queue() const { return q_.get(); }
+
     #if (EXERCISE_ID > EXERCISE_ID_NODES)
         [[nodiscard]] ReceiverType get_receiver_type() const override { return _type; }
     #endif

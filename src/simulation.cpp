@@ -1,6 +1,6 @@
-//
-// Created by Wiktor on 14.01.2022.
-//
+/*
+Created by Antoni 11.01.2022
+*/
 #include "simulation.hpp"
 
 void simulate(Factory &f, TimeOffset d, const std::function<void(Factory&, Time)>&) {

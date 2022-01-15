@@ -1,6 +1,6 @@
-//
-// Created by Wiktor on 14.01.2022.
-//
+/*
+Created by Antoni 11.01.2022
+*/
 
 #ifndef IMPLEMENTATION_REPORTS_HPP
 #define IMPLEMENTATION_REPORTS_HPP
