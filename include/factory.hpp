@@ -126,11 +126,11 @@ public:
     [[nodiscard]] bool is_consistent() const;
     bool has_reachable_storehouse(const PackageSender *sender, std::map<const PackageSender *, NodeColor> &node_colors) const;
 
-    void do_deliveries(Time t);
+    [[maybe_unused]] void do_deliveries(Time t);
 
-    void do_package_passing();
+    [[maybe_unused]] void do_package_passing();
 
-    void do_work(Time t);
+    [[maybe_unused]] void do_work(Time t);
 
 private:
     template <class Node>
@@ -156,6 +156,7 @@ private:
 
 
 Factory load_factory_structure(std::istream& is);
+void save_factory_structure(Factory &factory, std::ostream &os);
 
 
 #endif //IMPLEMENTATION_FACTORY_HPP
