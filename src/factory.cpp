@@ -112,7 +112,7 @@ bool Factory::has_reachable_storehouse(const PackageSender* sender, std::map<con
         throw std::logic_error("No defined receivers");
 }
 
-void Factory::do_deliveries(Time t)
+[[maybe_unused]] void Factory::do_deliveries(Time t)
 {
     NodeCollection<Ramp>::iterator node_;
     for (node_ = ramp_.begin(); node_ != ramp_.end(); ++node_)
@@ -121,7 +121,7 @@ void Factory::do_deliveries(Time t)
     }
 }
 
-void Factory::do_package_passing()
+[[maybe_unused]] void Factory::do_package_passing()
 {
     NodeCollection<Ramp>::iterator node_;
     for (node_ = ramp_.begin(); node_ != ramp_.end(); ++node_)
@@ -131,14 +131,14 @@ void Factory::do_package_passing()
     NodeCollection<Worker>::iterator node1_;
     for (node1_ = worker_.begin(); node1_ != worker_.end(); ++node1_)
     {
-        if (!node1_->get_package_processing_start_time())
+        if (node1_->get_sending_buffer())
         {
             node1_->send_package();
         }
     }
 }
 
-void Factory::do_work(Time t)
+[[maybe_unused]] void Factory::do_work(Time t)
 {
     NodeCollection<Worker>::iterator node1_;
     for (node1_ = worker_.begin(); node1_ != worker_.end(); ++node1_)
@@ -158,12 +158,8 @@ ParsedLineData parse_line(const std::string& line) {
     int i = 0;
 
     while (std::getline(token_stream, token, delimiter)) {
-        if (!i) {
-            data.element_type = TypeMap.find(token)->second;
-        }
-        else {
-            tokens.push_back(token);
-        }
+        if (!i) { data.element_type = TypeMap.find(token)->second; }
+        else { tokens.push_back(token); }
         ++i;
     }
 
@@ -261,4 +257,78 @@ Factory load_factory_structure(std::istream& is) {
         }
     }
     return factory;
+}
+
+void save_factory_structure(Factory &factory, std::ostream &os) {
+    os << "; == LOADING RAMPS ==\n" << std::endl;
+
+    std::for_each(factory.ramp_cbegin(), factory.ramp_cend(), [&os](const Ramp &n){ os <<
+    "LOADING_RAMP id=" << n.get_id() << " delivery-interval=" << n.get_delivery_interval() << std::endl; });
+    os << std::endl;
+
+    os << "; == WORKERS ==\n" << std::endl;
+
+    std::for_each(factory.worker_cbegin(), factory.worker_cend(), [&os](const Worker &n){ os <<
+    "WORKER id=" << n.get_id() << " processing-time=" << n.get_processing_duration() << " queue-type=";
+        if (queue_type(n.get_queue()->get_queue_type()) == "LIFO") { os << "LIFO" << std::endl; } else {
+        os << "FIFO" << std::endl; }});
+    os << std::endl;
+
+    os << "; == STOREHOUSES ==\n" << std::endl;
+
+    std::for_each(factory.storehouse_cbegin(), factory.storehouse_cend(), [&os](const Storehouse &n){ os <<
+    "STOREHOUSE id=" << n.get_id() << std::endl; });
+    os << std::endl;
+
+    os << "; == LINKS ==\n" << std::endl;
+
+    std::for_each(factory.ramp_cbegin(), factory.ramp_cend(), [&os](const Ramp &n)
+    { auto temp = n.receiver_preferences_.get_preferences();
+    if (*temp.begin() == *temp.rbegin()) {
+        os << "LINK src=ramp-" << n.get_id() << " dest=";
+        if (temp.begin()->first->get_receiver_type() == ReceiverType::WORKER) {
+            os << "worker-" << temp.begin()->second << std::endl;
+        }
+        else {
+            os << "store-" << temp.begin()->second << std::endl;
+        }
+        os << std::endl;
+    }
+    else {
+        for (auto step : temp) {
+            os << "LINK src=ramp-" << n.get_id() << " dest=";
+            if (step.first->get_receiver_type() == ReceiverType::WORKER) {
+                os << "worker-" << step.first->get_id() << std::endl;
+            }
+            else {
+                os << "store-" << step.first->get_id() << std::endl;
+            }
+        }
+    }
+    });
+
+    std::for_each(factory.worker_cbegin(), factory.worker_cend(), [&os](const Worker &n)
+    { auto temp = n.receiver_preferences_.get_preferences();
+        if (*temp.begin() == *temp.rbegin()) {
+            os << "LINK src=worker-" << n.get_id() << " dest=";
+            if (temp.begin()->first->get_receiver_type() == ReceiverType::WORKER) {
+                os << "worker-" << temp.begin()->second << std::endl;
+            }
+            else {
+                os << "store-" << temp.begin()->second << std::endl;
+            }
+            os << std::endl;
+        }
+        else {
+            for (auto step : temp) {
+                os << "LINK src=worker-" << n.get_id() << " dest=";
+                if (step.first->get_receiver_type() == ReceiverType::WORKER) {
+                    os << "worker-" << step.first->get_id() << std::endl;
+                }
+                else {
+                    os << "store-" << step.first->get_id() << std::endl;
+                }
+            }
+        }
+    });
 }

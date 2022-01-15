@@ -42,6 +42,7 @@ public:
     [[nodiscard]] IPackageStockpile::const_iterator cend() const override { return d_->cend(); }
     [[nodiscard]] IPackageStockpile::const_iterator begin() const override { return d_->begin(); }
     [[nodiscard]] IPackageStockpile::const_iterator end() const override { return d_->end(); }
+    [[nodiscard]] IPackageStockpile *get_queue() const { return &*d_; }
 private:
     ElementID _id;
     std::unique_ptr<IPackageStockpile> d_;
@@ -59,8 +60,8 @@ public:
     using const_iterator = preferences_t::const_iterator;
     using iterator = preferences_t::iterator;
 
-    [[nodiscard]] const_iterator cbegin() const { return map_.cbegin(); }
-    [[nodiscard]] const_iterator cend() const { return map_.cend(); }
+    [[maybe_unused]] [[nodiscard]] const_iterator cbegin() const { return map_.cbegin(); }
+    [[maybe_unused]] [[nodiscard]] const_iterator cend() const { return map_.cend(); }
     [[nodiscard]] const_iterator begin() const { return map_.begin(); }
     [[nodiscard]] const_iterator end() const { return map_.end(); }
 
@@ -86,7 +87,7 @@ public:
     PackageSender(PackageSender &&) = default;
 
     void send_package();
-    [[nodiscard]] std::optional<Package> &get_sending_buffer() const;
+    [[nodiscard]] const std::optional<Package> &get_sending_buffer() const { return buffer_; }
 
     ReceiverPreferences receiver_preferences_;
 
@@ -121,7 +122,7 @@ public:
     [[nodiscard]] IPackageStockpile::const_iterator end() const override { return q_->end(); }
 
     [[nodiscard]] IPackageQueue *get_queue() const { return &*q_; }
-    [[nodiscard]] std::optional<Package>& get_processing_buffer() const;
+    [[nodiscard]] const std::optional<Package>& get_processing_buffer() const { return pbuffer_; }
 
 private:
     ElementID id_;

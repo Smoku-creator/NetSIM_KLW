@@ -15,6 +15,8 @@ set(SOURCE_FILES
         src/helpers.cpp
         src/nodes.cpp
         src/factory.cpp
+        src/reports.cpp
+        src/simulation.cpp
         )
 
 add_executable(net ${SOURCE_FILES} main.cpp)
@@ -27,7 +29,7 @@ set(SOURCE_FILES_TESTS
         test/test_reports.cpp
         test/test_simulate.cpp
         test/test_storage_types.cpp
-        )
+        include/simulation.hpp src/simulation.cpp src/reports.cpp include/reports.hpp)
 
 add_executable(net_test ${SOURCE_FILES} ${SOURCE_FILES_TESTS} test/main_gtest.cpp)
 
@@ -41,5 +43,5 @@ add_subdirectory(googletest-master)
 
 target_link_libraries(net_test gmock)
 
-target_compile_definitions(net_test PUBLIC EXERCISE_ID=3)
-target_compile_definitions(net PUBLIC EXERCISE_ID=3)
+target_compile_definitions(net_test PUBLIC EXERCISE_ID=5)
+target_compile_definitions(net PUBLIC EXERCISE_ID=5)
